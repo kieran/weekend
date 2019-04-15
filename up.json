@@ -1,0 +1,9 @@
+{
+  "name": "weekend",
+  "profile": "kieran",
+  "regions": ["us-east-1"],
+  "type": "static",
+  "static": {
+    "dir": "dist"
+  }
+}

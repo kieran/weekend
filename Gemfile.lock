@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    holidays (7.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  holidays
+  tzinfo-data
+
+BUNDLED WITH
+   1.17.2

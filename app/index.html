@@ -1,0 +1,54 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Weeeeekend</title>
+    <meta name="title" content="" />
+    <meta name="description" content="Is this weekend a long weekend?" />
+    <meta name="author" content="Kieran Huggins (kieran.ca)" />
+    <style type="text/css">
+      body, html {
+        margin: 0;
+        padding: 0;
+        font-size: 50px;
+      }
+
+      .container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center
+      }
+      .container * {
+
+        color: white;
+        font-family: 'Helvetica', helvetica, arial;
+        text-shadow: 0 0 8px black;
+      }
+
+      .fullscreen-bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: -100;
+        display: flex;
+      }
+
+      .fullscreen-bg__video {
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="./index.coffee"></script>
+  </body>
+</html>
