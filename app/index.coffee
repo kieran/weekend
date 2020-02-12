@@ -1,15 +1,54 @@
-import React    from 'react'
-import ReactDOM from 'react-dom'
-import Application from '/screens/application'
+import React      from 'react'
+import { render } from 'react-dom'
+
+import format   from 'date-fns/format'
+import { get } from 'axios'
+
+import Holiday  from '/holiday'
+import Gif      from '/gif'
+
+import './style'
+
+getLocale = ->
+  { data: {country_code, region_code} } = await get "https://ipapi.co/json"
+  [country_code, region_code].join('_').toLowerCase()
+
+class Application extends React.Component
+  constructor: (props)->
+    super arguments...
+    @state =
+      loaded:   false
+      holiday:  null
+
+    do =>
+      @setState {
+        loaded:   true
+        holiday:  await Holiday.next await getLocale()
+      }
+
+  render: ->
+    <div className="container">{@content()}</div>
+
+  content: ->
+    switch
+      when not @state.loaded
+        <h1>Ummmmm.....</h1>
+      when not @state.holiday
+        <>
+          <h1>NO</h1>
+          <Gif name={'work sad'}/>
+        </>
+      else
+        { name, date, informal, observed } = @state.holiday
+        <>
+          {if informal
+            <h1>Maybe <code>¯\_(ツ)_/¯</code></h1>
+          else
+            <h1>Yes</h1>
+          }
+          <h2>This {format date, 'EEEE'} is {name} {'(observed)' if observed}</h2>
+          <Gif name={name}/>
+        </>
 
 
-# find current script tag
-thisScript = document.currentScript
-# create new container for app to render into
-container = document.createElement 'div'
-# copy over data-attrs from te script tag
-container.setAttribute attr.name, attr.value for attr in thisScript.attributes when /^data-.*$/.test attr.name
-# inject the container div in to the dom in place of the script tag
-thisScript.parentElement.replaceChild container, thisScript
-# render the app into the new container div
-ReactDOM.render `<Application/>`, container
+render <Application />, document.getElementById "application"
