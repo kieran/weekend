@@ -12,7 +12,6 @@ https://isthisweekendalongweekend.now.sh
     npm start
 
 ## Deploying to now
-    npm run holidays
     now
 
 ## Alias to primary URL
