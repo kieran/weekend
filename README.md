@@ -5,12 +5,12 @@ https://isthisweekendalongweekend.now.sh
 
 ## Running locally
     nvm use
-    yarn install
-    yarn holidays
-    yarn start
+    npm i
+    npm run holidays
+    npm start
 
 ## Deploying to now
-    yarn holidays
+    npm run holidays
     now
 
 ## Alias to primary URL

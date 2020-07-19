@@ -20,11 +20,11 @@ class Application extends React.Component
       loaded:   false
       holiday:  null
 
-    do =>
-      @setState {
-        loaded:   true
-        holiday:  await Holiday.next await getLocale()
-      }
+  componentDidMount: =>
+    @setState {
+      loaded:   true
+      holiday:  await Holiday.next await getLocale()
+    }
 
   render: ->
     <div className="container">{@content()}</div>

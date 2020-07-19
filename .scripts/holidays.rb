@@ -25,7 +25,7 @@ def holidays(year=Time.now.year, locale='ca_on')
 
 end
 
-Holidays.available_regions.select{|r|r.to_s.match /(ca|us|gb).*/}.each do |locale|
+Holidays.available_regions.select{|r|r.to_s.match /^(ca|us|gb).*/}.each do |locale|
   out = holidays(Time.now.year, locale).to_json
   File.open("dist/#{locale}.json", 'w') { |file| file.write(out) }
 end
