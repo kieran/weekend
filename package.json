@@ -2,29 +2,24 @@
   "name": "weekend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf dist",
-    "start": "npx parcel app/index.html",
-    "holidays": "mkdir -p dist && bundle && bundle exec ruby ./.scripts/holidays.rb",
-    "dist": "npx parcel build app/index.html",
-    "now-build": "gem install bundler:1.17.2 && npm run holidays && npx parcel build app/index.html",
-    "link": "now ln isthisweekendalongweekend.now.sh"
+    "start": "npm run holidays && parcel serve index.html",
+    "build": "npm run holidays && parcel build index.html",
+    "holidays": "ruby ./holidays.rb",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Kieran Huggins",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.10.5",
-    "@babel/plugin-transform-runtime": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "@babel/preset-react": "^7.10.4",
-    "axios": "^0.19.2",
-    "coffeescript": "^2.5.1",
-    "date-fns": "^2.15.0",
-    "parcel": "^1.12.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "sass": "^1.26.10"
+    "coffeescript": "^2.6.1",
+    "date-fns": "^2.28.0",
+    "parcel": "^2.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.49.8"
+  },
+  "devDependencies": {
+    "@parcel/transformer-coffeescript": "^2.3.2",
+    "@parcel/transformer-sass": "^2.3.2"
   }
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { get } from 'axios'
+url     = 'https://api.giphy.com/v1/gifs/search'
+api_key = '02c86584244447a3884c4a867d36932b'
+limit   = 20
 
 export default \
 class Gif extends React.Component
@@ -10,13 +12,11 @@ class Gif extends React.Component
 
   componentDidMount: =>
     # giphy setup
-    url     = 'https://api.giphy.com/v1/gifs/search'
-    api_key = '02c86584244447a3884c4a867d36932b'
-    q       = (@props.name or 'work sad').replace /\s+/g, '+'
-    limit   = 10
+    q = (@props.name or 'work sad').replace(/\s+/g, '+')
 
     # get gifs
-    { data: data: gifs } = await get url, params: { q, api_key, limit }
+    res = await fetch "#{url}?#{new URLSearchParams {api_key, limit, q}}"
+    { data: gifs } = await res.json()
 
     # fetch a random result
     gif = gifs[Math.floor Math.random() * gifs.length]
