@@ -35,5 +35,3 @@ Holidays.available_regions.select{|r|r.to_s.match /^(ca|us|gb)_.*/}.each do |loc
   FileUtils.mkdir_p('dist/holidays')
   File.open("dist/holidays/#{locale}.json", 'w') { |file| file.write(out) }
 end
-
-# puts holidays.to_json; nil
