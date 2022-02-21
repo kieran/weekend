@@ -7,15 +7,16 @@ import './styles.sass'
 import format           from 'date-fns/format'
 import parse            from 'date-fns/parseISO'
 import addDays          from 'date-fns/addDays'
+import startOfToday     from 'date-fns/startOfToday'
 import isWithinInterval from 'date-fns/isWithinInterval'
+import isToday          from 'date-fns/isToday'
 
 holidaysHere = ->
   res = await fetch "/holidays"
   res.json()
 
 holidaysThisWeek = ->
-  now = new Date
-  interval = start: now, end: addDays now, 7
+  interval = start: startOfToday(), end: addDays startOfToday(), 7
   ret = (h for h in await holidaysHere() when isWithinInterval parse(h.observed or h.date), interval)
 
 nextHoliday = ->
@@ -26,6 +27,14 @@ nextHoliday = ->
   return h for h in holidays when h.informal
   # or nothing
   null
+
+dayName = (date)->
+  console.log date
+  return 'today' if isToday date
+  format date, 'EEEE'
+
+capitalize = (str='')->
+  str[0].toUpperCase() + str[1..-1].toLowerCase()
 
 class Application extends React.Component
   constructor: (props)->
@@ -56,14 +65,17 @@ class Application extends React.Component
         { name, date, informal, observed } = @state.holiday
         <>
           {if informal
-            <h1>Maybe <code>¯\_(ツ)_/¯</code></h1>
+            <>
+              <h1>Probably not <code>¯\_(ツ)_/¯</code></h1>
+              <h2>even though {capitalize dayName parse date} is {name}</h2>
+            </>
           else
             <h1>Yes</h1>
           }
           <h2>
-            This {format parse(date), 'EEEE'} is {name}
+            {capitalize dayName parse date} is {name}
             {if observed and not informal
-              <div>(we get {format parse(date), 'EEEE'} off)</div>
+              <div>(we get {dayName parse observed} off)</div>
             }
             </h2>
           <Gif name={name}/>
