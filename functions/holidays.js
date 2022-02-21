@@ -1,4 +1,4 @@
-export async function onRequest({request: {cf: {country, regionCode}, url}}) {
+export async function onRequest({env, request: {cf: {country, regionCode}, url}}) {
   // Contents of ctx object
   // const {
   //   request, // same as existing Worker API
@@ -10,5 +10,5 @@ export async function onRequest({request: {cf: {country, regionCode}, url}}) {
   // } = ctx;
 
   let filename = `${country}_${regionCode}.json`.toLowerCase()
-  return await fetch(`${url}/${filename}`);
+  return await env.ASSETS.fetch(`${url}/${filename}`);
 }
