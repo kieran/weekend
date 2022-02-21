@@ -32,7 +32,7 @@ class Gif extends React.Component
     { mp4, webp, poster } = @state
     return null unless poster
     <div className="Gif">
-      <video loop={true} muted={true} autoPlay={true} poster={poster}>
+      <video loop={true} muted={true} playsInline={true} autoPlay={true} poster={poster}>
         <source src={mp4} type="video/mp4"/>
         <source src={webp} type="video/webp"/>
       </video>
