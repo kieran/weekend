@@ -6,5 +6,5 @@
 // data      - arbitrary space for passing data between middlewares
 export async function onRequest({env, request: {cf: {country, regionCode}, url}}) {
   let filename = `${country}_${regionCode}.json`.toLowerCase()
-  return await env.ASSETS.fetch(`${url}/${filename}`)
+  return await fetch(`${url}/${filename}`)
 }
