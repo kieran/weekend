@@ -4,7 +4,7 @@
 // waitUntil - same as ctx.waitUntil in existing Worker API
 // next      - used for middleware or to fetch assets
 // data      - arbitrary space for passing data between middlewares
-export async function onRequest({env, request: url, {cf: {country, regionCode}}}) {
+export async function onRequest({env, request: {cf: {country, regionCode}, url}}) {
   let root = new URL(url).origin
   let path = `/holidays/${country}_${regionCode}.json`.toLowerCase()
   return await env.ASSETS.fetch(root + path)
