@@ -70,10 +70,12 @@ class Application extends React.Component
               <h2>even though {capitalize dayName parse date} is {name}</h2>
             </>
           else
-            <h1>Yes</h1>
+            <>
+              <h1>Yes</h1>
+              {capitalize dayName parse date} is {name}
+            </>
           }
           <h2>
-            {capitalize dayName parse date} is {name}
             {if observed and not informal
               <div>(we get {dayName parse observed} off)</div>
             }
