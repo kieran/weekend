@@ -1,5 +1,5 @@
 import React from 'react'
-import fixWeirdGusses from '/fixWeirdGusses'
+import fixWeirdGusses from '/fix-weird-guesses'
 
 url     = 'https://api.giphy.com/v1/gifs/search'
 api_key = '02c86584244447a3884c4a867d36932b'
