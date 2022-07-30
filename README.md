@@ -16,3 +16,8 @@
 ## Re-generate holiday files (every year)
     bundle install
     npm run holidays
+
+---
+
+If you find weird GIFs displayed for specific holidays,
+please add an alternative search term in the `fixWeirdGuesses.coffee` module.
