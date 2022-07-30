@@ -1,4 +1,5 @@
 import React from 'react'
+import fixWeirdGusses from '/fixWeirdGusses'
 
 url     = 'https://api.giphy.com/v1/gifs/search'
 api_key = '02c86584244447a3884c4a867d36932b'
@@ -15,7 +16,8 @@ class Gif extends React.Component
 
   componentDidMount: =>
     # giphy setup
-    q = (@props.name or 'work sad').replace(/\s+/g, '+')
+    correctedName = fixWeirdGusses[@props.name] or @props.name
+    q = (correctedName or 'work sad').replace(/\s+/g, '+')
 
     # get gifs
     res = await fetch "#{url}?#{new URLSearchParams {api_key, limit, q}}"
