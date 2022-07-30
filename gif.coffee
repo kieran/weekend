@@ -4,6 +4,9 @@ url     = 'https://api.giphy.com/v1/gifs/search'
 api_key = '02c86584244447a3884c4a867d36932b'
 limit   = 20
 
+sample = (arr=[])->
+  arr[Math.floor Math.random() * arr.length]
+
 export default \
 class Gif extends React.Component
   constructor: ->
@@ -19,7 +22,7 @@ class Gif extends React.Component
     { data: gifs } = await res.json()
 
     # fetch a random result
-    gif = gifs[Math.floor Math.random() * gifs.length]
+    gif = sample gifs
 
     {
       original: { mp4, webp }

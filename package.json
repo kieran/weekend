@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel serve index.html",
+    "start": "npx wrangler pages dev --proxy 1234 -- npm run dev",
+    "dev": "parcel serve index.html",
     "build": "parcel build index.html",
     "holidays": "ruby ./holidays.rb",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-coffeescript": "^2.3.2",
-    "@parcel/transformer-sass": "^2.3.2"
+    "@parcel/transformer-sass": "^2.3.2",
+    "wrangler": "^2.0.23"
   }
 }

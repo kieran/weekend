@@ -11,25 +11,34 @@ import startOfToday     from 'date-fns/startOfToday'
 import isWithinInterval from 'date-fns/isWithinInterval'
 import isToday          from 'date-fns/isToday'
 
+# this relies on cloudflare pages & their geolocation service
+# needs to be run locally via wrangler
 holidaysHere = ->
   res = await fetch "/holidays"
   res.json()
 
-holidaysThisWeek = ->
-  interval = start: startOfToday(), end: addDays startOfToday(), 7
-  ret = (h for h in await holidaysHere() when isWithinInterval parse(h.observed or h.date), interval)
+thisWeekend = ->
+  start: startOfToday()
+  end: addDays startOfToday(), 7
+
+holidaysThisWeekend = ->
+  (h for h in await holidaysHere() when isWithinInterval parse(h.observed or h.date), thisWeekend())
 
 nextHoliday = ->
-  holidays = await holidaysThisWeek()
+  holidays = await holidaysThisWeekend()
+
   # get next serious holiday
-  return h for h in holidays when not h.informal
+  for h in holidays when not h.informal
+    return h
+
   # or next informal holiday
-  return h for h in holidays when h.informal
+  for h in holidays when h.informal
+    return h
+
   # or nothing
   null
 
 dayName = (date)->
-  console.log date
   return 'today' if isToday date
   format date, 'EEEE'
 
@@ -46,7 +55,7 @@ class Application extends React.Component
   componentDidMount: =>
     @setState {
       loaded:   true
-      holiday:  await nextHoliday()#Holiday.next await getHolidays()
+      holiday:  await nextHoliday()
     }
 
   render: ->

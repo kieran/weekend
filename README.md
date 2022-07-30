@@ -7,3 +7,7 @@
     nvm use
     npm i
     npm start
+
+## Generate updated holiday defs (once a year)
+    bundle install
+    npm run holidays
