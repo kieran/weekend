@@ -14,6 +14,10 @@ import isToday          from 'date-fns/isToday'
 # this relies on cloudflare pages & their geolocation service
 # needs to be run locally via wrangler
 holidaysHere = ->
+  # if run via `npm run dev` we can skip the cloudflare stuff and serve a holiday file directly
+  return require('/dist/holidays/ca_bc.json') if process.env.OFFLINE
+
+  # else, ask cloudflare for the holiday file
   res = await fetch "/holidays"
   res.json()
 

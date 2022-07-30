@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "npx wrangler pages dev --proxy 1234 -- npm run dev",
-    "dev": "parcel serve index.html",
+    "start": "npx wrangler pages dev --proxy 1234 -- parcel serve index.html",
+    "dev": "OFFLINE=true parcel serve index.html",
     "build": "parcel build index.html",
     "holidays": "ruby ./holidays.rb",
     "test": "echo \"Error: no test specified\" && exit 1"
