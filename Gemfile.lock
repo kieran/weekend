@@ -5,10 +5,11 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  arm64-darwin-23
 
 DEPENDENCIES
   holidays
   tzinfo-data
 
 BUNDLED WITH
-   2.2.22
+   2.4.22
