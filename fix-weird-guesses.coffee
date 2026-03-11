@@ -1,3 +1,3 @@
 export default
-  "Civic Holiday": "Lake Day"
-  "B.C. Day": "Rocky mountains"
+  "Civic Holiday": "Cottage life"
+  "B.C. Day": "British Columbia"
